@@ -1,48 +1,4 @@
-/*let primVar = 5;
-let segVar = 7;
-let valor1;
-let valor2;
-const num1 = 1;
-const num2 = 30;*/
-/*const sal1 = "hola";
-const sal2 = 'mau';
-const sal3 = 'diaz';
-
-
-
-
-
-let nombre1 = prompt('Ingresa tu nombre');
-console.log(nombre1);*/
-/*
-for (let i=0; i<=10;i++){
-    console.log('vuelta ' + i);
-}
-let nombre = prompt ('Ingresa un nombre')
-nombre.toLowerCase()
-while(nombre!='LUIS'){
-    console.log('bienvenido ' )
-    let nombre = prompt ('Ingresa un nombre')
-}
-alert('No eres bienvenido  ADIOS')*/
-
-function NuevoUsuario(nombre, email, password){
-    this.nombre = nombre ;
-    this.email = email; 
-    this.edad = edad;
-    this.password = password;
-    this.mayorEdad = function (){
-        if (this.edad <= 18 ){
-            return true;
-        } else {
-            return false ;
-        }
-    };
-}
-
-let usuario1 = new NuevoUsuario ()
-
-
+//Venta de muebles
 let mesa1 = 15000
 let mesa2= 18500
 let mesa3 = 19000
@@ -55,7 +11,8 @@ let silla3 = 5000
 let silla4= 6000
 let silla5 = 6550
 
-let cabecera1 = 8000
+
+/*let cabecera1 = 8000
 let cabecera2 = 8500
 let cabecera3 = 9000
 let cabecera4 = 10250
@@ -71,39 +28,123 @@ let tocador1 = 3500
 let tocador2 = 4500
 let tocador3 = 5000
 let tocador4 = 6750
-let tocador5 = 7500
+let tocador5 = 7500*/
+
+let contador = 0 
+let total =0
+let costo = 0
+let operacion
 
 
+if (contador === 0){
+    let continuar = prompt("Desea hacer una compra ?    Escriba   si   o   no" )
+    continuar.toLowerCase()
 
-
-
-while (terminar=='no'){
-    let opcmueb = prompt ("Seleccione una opcion de mueble:   Tecle solo la inicial que aparece en parentesis     (M)Mesa  (S)Silla  (C)Cabecera  (B)Buro  (T)Tocador")
-    opcmueb.toUpperCase()
-    mueble (opcmueb)
-
-
-
-
-    let terminar = prompt("Desea terminar su pedido ?    Escriba   si   o   no" )
-    terminar.toLowerCase()
-
-    compra(operacion)
-    
-
-
-
+    if (continuar ==="si"){
+        proceso ()
+    } else {
+        alert("Gracias por visitar nuestra pagina.  Vuelva pronto")
+    }
 
 }
+
+function proceso (){
+    while (continuar=='si'){
+        let opcmueb = prompt ("Seleccione una opcion de mueble:   Tecle solo la inicial que aparece en parentesis     (M)Mesa  (S)Silla  ")//(C)Cabecera  (B)Buro  (T)Tocador")
+        opcmueb.toUpperCase()
+    
+        costo = mueble (opcmueb)
+
+        if (contador !=0){
+            operacion=prompt ("Si desea agregar el producto tecle (+)  Si desea quitar el producto tecle (-)")
+            compra(operacion)
+
+        } else {
+            operacion = "+"
+            compra(operacion)
+        }
+
+    
+        let continuar = prompt("Desea continuar comprando ?    Escriba   si   o   no" )
+        continuar.toLowerCase()
+    
+    }
+    operacion = "="
+    compra(operacion)
+
+}
+
+
 
 function mueble (opcmueb){
     switch (mueble){
         case "M":{
             let opcmesa = prompt ("Estas son las mesas que ofrecemos:   Tecle el numero dentro del parentesis    (1)"+mesa1+"  (2)"+mesa2+"(3)"+mesa3+"  (4)"+mesa4+"  (5)"+mesa5 )
             parseInt(opcmesa)
-            
+             costo = omesas(om)
+             return costo
         }
+        case "S":{
+            let opcsilla = prompt ("Estas son las sillas que ofrecemos:   Tecle el numero dentro del parentesis    (1)"+silla1+"  (2)"+silla2+"(3)"+silla3+"  (4)"+silla4+"  (5)"+silla5 )
+            parseInt(opcsilla)
+            costo = osillas(os)
+            return costo
+        }
+       
+    }
+}
 
+function omesas (om){
+
+    alert ("Este es el mueble que usted eligio mesa "+om)
+
+    switch(om){
+        case 1:{
+             return mesa1
+             break
+        }
+        case 2:{
+            return mesa2
+            break
+        }
+        case 3:{
+            return mesa3
+            break
+        }
+        case 4:{
+            return mesa4
+            break
+        }
+        case 5:{
+            return mesa5
+            break
+        }
+    }
+}
+
+function osillas (os){
+    alert ("Este es el mueble que usted eligio silla "+os)
+    switch(os){
+        case 1:{
+            return silla1
+            break
+        }
+        case 2:{
+            return silla2
+            break
+        }
+        case 3:{
+            return silla3
+            break
+        }
+        case 4:{
+            return silla4
+            break
+        }
+        case 5:{
+            return silla5
+            break
+        }
     }
 }
 
@@ -111,7 +152,22 @@ function mueble (opcmueb){
 function compra(operacion) {
     switch (operacion){
         case "+" : {
-
+            return total = total + costo
+            contador = contador + 1 
+            break
         }
+        case "-" :{
+            if (total >= costo){
+                return total = total - costo
+                contador = contador - 1
+                break
+            } else {
+                alert ("ERROR Este producto no se puede quitar")
+            }
+        }
+        case "=" :{
+            alert ("La cantidad de productos que llevas es"+contador+"     El total a pagar es de:"+total)
+        }
+
     }
 }
