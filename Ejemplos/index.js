@@ -35,138 +35,118 @@ let total =0
 let costo = 0
 let operacion
 
+let continuar = prompt("Desea hacer una compra ?    Escriba   si   o   no" ).toLowerCase()
 
 if (contador === 0){
-    let continuar = prompt("Desea hacer una compra ?    Escriba   si   o   no" )
-    continuar.toLowerCase()
-
-    if (continuar ==="si"){
-        proceso ()
+    if (continuar =="si"){
+        proceso();
     } else {
         alert("Gracias por visitar nuestra pagina.  Vuelva pronto")
     }
 
 }
 
-function proceso (){
-    while (continuar=='si'){
-        let opcmueb = prompt ("Seleccione una opcion de mueble:   Tecle solo la inicial que aparece en parentesis     (M)Mesa  (S)Silla  ")//(C)Cabecera  (B)Buro  (T)Tocador")
-        opcmueb.toUpperCase()
+function proceso() {
+    while (continuar==="si"){
+        let opcmueb = prompt ("Seleccione una opcion de mueble:   Tecle solo la inicial que aparece en parentesis     (M)Mesa  (S)Silla  ").toUpperCase()
     
         costo = mueble (opcmueb)
 
         if (contador !=0){
-            operacion=prompt ("Si desea agregar el producto tecle (+)  Si desea quitar el producto tecle (-)")
-            compra(operacion)
+            operacion = prompt ("Si desea agregar el producto tecle (+)  Si desea quitar el producto tecle (-)")
+            compra(operacion,costo)
 
         } else {
             operacion = "+"
-            compra(operacion)
+            compra(operacion,costo)
         }
 
     
-        let continuar = prompt("Desea continuar comprando ?    Escriba   si   o   no" )
-        continuar.toLowerCase()
+        continuar = prompt("Desea continuar comprando ?    Escriba   si   o   no" ).toLowerCase()
     
     }
     operacion = "="
-    compra(operacion)
+    compra(operacion,costo)
 
 }
 
 
-
 function mueble (opcmueb){
-    switch (mueble){
+    switch (opcmueb){
         case "M":{
-            let opcmesa = prompt ("Estas son las mesas que ofrecemos:   Tecle el numero dentro del parentesis    (1)"+mesa1+"  (2)"+mesa2+"(3)"+mesa3+"  (4)"+mesa4+"  (5)"+mesa5 )
-            parseInt(opcmesa)
-             costo = omesas(om)
-             return costo
+            let om = parseInt ( prompt ("Estas son las mesas que ofrecemos:   Tecle el numero dentro del parentesis    (1)"+mesa1+"  (2)"+mesa2+"(3)"+mesa3+"  (4)"+mesa4+"  (5)"+mesa5 ))
+            costo = omesas(om)
+            return costo
         }
         case "S":{
-            let opcsilla = prompt ("Estas son las sillas que ofrecemos:   Tecle el numero dentro del parentesis    (1)"+silla1+"  (2)"+silla2+"(3)"+silla3+"  (4)"+silla4+"  (5)"+silla5 )
-            parseInt(opcsilla)
+            let os = parseInt ( prompt ("Estas son las sillas que ofrecemos:   Tecle el numero dentro del parentesis    (1)"+silla1+"  (2)"+silla2+"(3)"+silla3+"  (4)"+silla4+"  (5)"+silla5 ))
             costo = osillas(os)
             return costo
         }
-       
     }
 }
 
 function omesas (om){
 
-    alert ("Este es el mueble que usted eligio mesa "+om)
+    console.log ("Este es el mueble que usted eligio mesa "+om)
 
     switch(om){
         case 1:{
              return mesa1
-             break
         }
         case 2:{
             return mesa2
-            break
         }
         case 3:{
             return mesa3
-            break
         }
         case 4:{
             return mesa4
-            break
         }
         case 5:{
             return mesa5
-            break
         }
     }
 }
 
 function osillas (os){
-    alert ("Este es el mueble que usted eligio silla "+os)
+    console.log("Este es el mueble que usted eligio silla "+os)
     switch(os){
         case 1:{
             return silla1
-            break
         }
         case 2:{
             return silla2
-            break
         }
         case 3:{
             return silla3
-            break
         }
         case 4:{
             return silla4
-            break
         }
         case 5:{
             return silla5
-            break
         }
     }
 }
 
 
-function compra(operacion) {
+function compra(operacion,costo) {
     switch (operacion){
-        case "+" : {
-            return total = total + costo
+        case '+' : {
             contador = contador + 1 
-            break
+            total = total + costo
         }
-        case "-" :{
+        case '-' :{
             if (total >= costo){
-                return total = total - costo
                 contador = contador - 1
-                break
+                total = total - costo
             } else {
                 alert ("ERROR Este producto no se puede quitar")
             }
         }
-        case "=" :{
-            alert ("La cantidad de productos que llevas es"+contador+"     El total a pagar es de:"+total)
+        case '=' :{
+            alert ("La cantidad de productos que llevas es "+contador+"     El total a pagar es de: "+total)
         }
 
     }
